@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="missingpy",
-    version="0.1.0",
+    version="0.1.1",
     author="Epsilon Machine",
     description="Missing Data Imputation for Python",
     long_description=long_description,
