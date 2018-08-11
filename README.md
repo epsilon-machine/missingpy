@@ -120,7 +120,7 @@ neighbors of the rows that contain the missing values::
         
     Methods
     -------
-    fit(self, X, y=None):
+    fit(X, y=None):
         Fit the imputer on X.
 
         Parameters
@@ -134,7 +134,7 @@ neighbors of the rows that contain the missing values::
         self : object
             Returns self.
             
-    transform(self, X):
+    transform(X):
         Impute all missing values in X.
 
         Parameters
@@ -147,7 +147,7 @@ neighbors of the rows that contain the missing values::
         X : {array-like}, shape = [n_samples, n_features]
             The imputed dataset.
 
-    fit_transform(self, X, y=None, **fit_params):
+    fit_transform(X, y=None, **fit_params):
         Fit KNNImputer and impute all missing values in X.
 
         Parameters
