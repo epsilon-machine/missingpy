@@ -224,15 +224,14 @@ time for both types of variables (if available).
     >>> from missingpy import MissForest
     >>> nan = float("NaN")
     >>> X = [[1, 2, nan], [3, 4, 3], [nan, 6, 5], [8, 8, 7]]
-    >>> imputer = MissForest()
+    >>> imputer = MissForest(random_state=1337)
     >>> imputer.fit_transform(X)
     Iteration: 0
     Iteration: 1
     Iteration: 2
-    Iteration: 3
-    array([[1.  , 2. , 4. ],
+    array([[1.  , 2. , 3.92 ],
            [3.  , 4. , 3. ],
-           [3.16, 6. , 5. ],
+           [2.71, 6. , 5. ],
            [8.  , 8. , 7. ]])
 
 ### API
