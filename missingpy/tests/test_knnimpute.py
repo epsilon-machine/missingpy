@@ -6,8 +6,8 @@ from sklearn.utils.testing import assert_raise_message
 from sklearn.utils.testing import assert_equal
 
 from missingpy import KNNImputer
-from missingpy.pairwise_ext import masked_euclidean_distances
-from missingpy.pairwise_ext import pairwise_distances
+from missingpy.pairwise_external import masked_euclidean_distances
+from missingpy.pairwise_external import pairwise_distances
 
 
 def test_knn_imputation_shape():

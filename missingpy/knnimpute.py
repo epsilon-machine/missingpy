@@ -13,9 +13,9 @@ from sklearn.utils.validation import FLOAT_DTYPES
 from sklearn.neighbors.base import _check_weights
 from sklearn.neighbors.base import _get_weights
 
-from .pairwise_ext import pairwise_distances
-from .pairwise_ext import _get_mask
-from .pairwise_ext import _MASKED_METRICS
+from .pairwise_external import pairwise_distances
+from .pairwise_external import _get_mask
+from .pairwise_external import _MASKED_METRICS
 
 __all__ = [
     'KNNImputer',
