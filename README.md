@@ -56,9 +56,9 @@ neighbors of the rows that contain the missing values::
 
 ### API
     KNNImputer(missing_values="NaN", n_neighbors=5, weights="uniform", 
-                 metric="masked_euclidean", row_max_missing=0.5, 
-                 col_max_missing=0.8, copy=True)
-
+                     metric="masked_euclidean", row_max_missing=0.5, 
+                     col_max_missing=0.8, copy=True)
+                 
     Parameters
     ----------
     missing_values : integer or "NaN", optional (default = "NaN")
@@ -117,35 +117,37 @@ neighbors of the rows that contain the missing values::
         missing features or because all of the sample's k-nearest neighbors
         (i.e., the potential donors) also have the relevant feature value
         missing.
-    
+
     Methods
     -------
     fit(X, y=None):
         Fit the imputer on X.
-    
+
         Parameters
         ----------
         X : {array-like}, shape (n_samples, n_features)
             Input data, where ``n_samples`` is the number of samples and
             ``n_features`` is the number of features.
-    
+
         Returns
         -------
         self : object
             Returns self.
             
+            
     transform(X):
         Impute all missing values in X.
-    
+
         Parameters
         ----------
         X : {array-like}, shape = [n_samples, n_features]
             The input data to complete.
-    
+
         Returns
         -------
         X : {array-like}, shape = [n_samples, n_features]
             The imputed dataset.
+    
     
     fit_transform(X, y=None, **fit_params):
         Fit KNNImputer and impute all missing values in X.
