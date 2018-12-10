@@ -70,7 +70,7 @@ def masked_euclidean_distances(X, Y=None, squared=False,
     paired_distances : distances betweens pairs of elements of X and Y.
     """
     # Import here to prevent circular import
-    from .pairwise_ext import _get_mask, check_pairwise_arrays
+    from .pairwise_external import _get_mask, check_pairwise_arrays
 
     # NOTE: force_all_finite=False allows not only NaN but also +/- inf
     X, Y = check_pairwise_arrays(X, Y, accept_sparse=False,

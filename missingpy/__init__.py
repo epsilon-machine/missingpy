@@ -1,3 +1,4 @@
 from .knnimpute import KNNImputer
+from .missforest import MissForest
 
-__all__ = ['KNNImputer']
+__all__ = ['KNNImputer', 'MissForest']
