@@ -55,6 +55,10 @@ neighbors of the rows that contain the missing values::
            [8. , 8. , 7. ]])
 
 ### API
+    KNNImputer(missing_values="NaN", n_neighbors=5, weights="uniform", 
+                 metric="masked_euclidean", row_max_missing=0.5, 
+                 col_max_missing=0.8, copy=True)
+
     Parameters
     ----------
     missing_values : integer or "NaN", optional (default = "NaN")
@@ -185,6 +189,14 @@ time for both types of variables (if available).
            [8.  , 8. , 7. ]])
 
 ### API
+    MissForest(max_iter=10, decreasing=False, missing_values=np.nan,
+                 copy=True, n_estimators=100, criterion=('mse', 'gini'),
+                 max_depth=None, min_samples_split=2, min_samples_leaf=1,
+                 min_weight_fraction_leaf=0.0, max_features='auto',
+                 max_leaf_nodes=None, min_impurity_decrease=0.0,
+                 bootstrap=True, oob_score=False, n_jobs=-1, random_state=None,
+                 verbose=0, warm_start=False, class_weight=None)
+                 
     Parameters
     ----------
     NOTE: Most parameter definitions below are taken verbatim from the
