@@ -117,6 +117,49 @@ neighbors of the rows that contain the missing values::
         missing features or because all of the sample's k-nearest neighbors
         (i.e., the potential donors) also have the relevant feature value
         missing.
+    
+    Methods
+    -------
+    fit(X, y=None):
+        Fit the imputer on X.
+    
+        Parameters
+        ----------
+        X : {array-like}, shape (n_samples, n_features)
+            Input data, where ``n_samples`` is the number of samples and
+            ``n_features`` is the number of features.
+    
+        Returns
+        -------
+        self : object
+            Returns self.
+            
+    transform(X):
+        Impute all missing values in X.
+    
+        Parameters
+        ----------
+        X : {array-like}, shape = [n_samples, n_features]
+            The input data to complete.
+    
+        Returns
+        -------
+        X : {array-like}, shape = [n_samples, n_features]
+            The imputed dataset.
+    
+    fit_transform(X, y=None, **fit_params):
+        Fit KNNImputer and impute all missing values in X.
+    
+        Parameters
+        ----------
+        X : {array-like}, shape (n_samples, n_features)
+            Input data, where ``n_samples`` is the number of samples and
+            ``n_features`` is the number of features.
+    
+        Returns
+        -------
+        X : {array-like}, shape (n_samples, n_features)
+            Returns imputed dataset.       
 
 ### References
 1. Olga Troyanskaya, Michael Cantor, Gavin Sherlock, Pat Brown, Trevor
@@ -142,7 +185,9 @@ missing values -- let's call this the candidate column.
 The first step involves filling any missing values of the remaining,
 non-candidate, columns with an initial guess, which is the column mean for
 columns representing numerical variables and the column mode for columns
-representing categorical variables. After that, the imputer fits a random
+representing categorical variables. Note that the categorical variables 
+need to be explicitly identified during the imputer's `fit()` method call 
+(see API for more information). After that, the imputer fits a random
 forest model with the candidate column as the outcome variable and the
 remaining columns as the predictors over all rows where the candidate
 column values are not missing.
@@ -345,7 +390,56 @@ time for both types of variables (if available).
         being imputed while the second element is an array of modes of
         categorical features being imputed (if available, otherwise it
         will be None).
+    
+    Methods
+    -------
+    fit(self, X, y=None, cat_vars=None):
+        Fit the imputer on X.
 
+        Parameters
+        ----------
+        X : {array-like}, shape (n_samples, n_features)
+            Input data, where ``n_samples`` is the number of samples and
+            ``n_features`` is the number of features.
+
+        cat_vars : int or array of ints, optional (default = None)
+            An int or an array containing column indices of categorical
+            variable(s)/feature(s) present in the dataset X.
+            ``None`` if there are no categorical variables in the dataset.
+
+        Returns
+        -------
+        self : object
+            Returns self.
+        
+            
+    transform(X):
+        Impute all missing values in X.
+
+        Parameters
+        ----------
+        X : {array-like}, shape = [n_samples, n_features]
+            The input data to complete.
+
+        Returns
+        -------
+        X : {array-like}, shape = [n_samples, n_features]
+            The imputed dataset.
+        
+    
+    fit_transform(X, y=None, **fit_params):
+        Fit MissForest and impute all missing values in X.
+
+        Parameters
+        ----------
+        X : {array-like}, shape (n_samples, n_features)
+            Input data, where ``n_samples`` is the number of samples and
+            ``n_features`` is the number of features.
+
+        Returns
+        -------
+        X : {array-like}, shape (n_samples, n_features)
+            Returns imputed dataset.
 
 ### References
 
