@@ -1,6 +1,6 @@
 """KNN Imputer for Missing Data"""
 # Author: Ashim Bhattarai
-# License: BSD 3 clause
+# License: GNU General Public License v3 (GPLv3)
 
 import warnings
 

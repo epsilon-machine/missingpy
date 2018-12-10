@@ -1,6 +1,6 @@
 """MissForest Imputer for Missing Data"""
 # Author: Ashim Bhattarai
-# License: GPL-3
+# License: GNU General Public License v3 (GPLv3)
 
 import warnings
 
