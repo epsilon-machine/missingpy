@@ -3,15 +3,17 @@
 `missingpy` is a library for missing data imputation in Python. It has an 
 API consistent with [scikit-learn](http://scikit-learn.org/stable/), so users 
 already comfortable with that interface will find themselves in familiar 
-terrain. Currently, the library supports k-Nearest Neighbors based 
-imputation and Random Forest based imputation (MissForest) but we plan to add 
-other imputation tools in the future so please stay tuned!
+terrain. Currently, the library supports the following algorithms:
+1. k-Nearest Neighbors imputation
+2. Random Forest imputation (MissForest) 
+
+We plan to add other imputation tools in the future so please stay tuned!
 
 ## Installation
 
 `pip install missingpy`
 
-## k-Nearest Neighbors (kNN) Imputation
+## 1. k-Nearest Neighbors (kNN) Imputation
 
 ### Example
 ```
@@ -169,7 +171,7 @@ neighbors of the rows that contain the missing values::
     estimation methods for DNA microarrays, BIOINFORMATICS Vol. 17 no. 6, 2001
     Pages 520-525.
 
-## Random Forest Imputation (MissForest)
+## 2. Random Forest Imputation (MissForest)
 
 ### Example
 ```
@@ -341,11 +343,10 @@ time for both types of variables (if available).
         Whether to use out-of-bag samples to estimate
         the generalization accuracy.
 
-    n_jobs : int or None, optional (default=None)
+    n_jobs : int or None, optional (default=-1)
         The number of jobs to run in parallel for both `fit` and `predict`.
         ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.
-        ``-1`` means using all processors. See :term:`Glossary <n_jobs>`
-        for more details.
+        ``-1`` means using all processors.
 
     random_state : int, RandomState instance or None, optional (default=None)
         If int, random_state is the seed used by the random number generator;
