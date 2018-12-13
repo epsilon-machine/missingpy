@@ -16,7 +16,7 @@ We plan to add other imputation tools in the future so please stay tuned!
 ## 1. k-Nearest Neighbors (kNN) Imputation
 
 ### Example
-```
+```python
 # Let X be an array containing missing values
 from missingpy import KNNImputer
 imputer = KNNImputer()
@@ -174,7 +174,7 @@ neighbors of the rows that contain the missing values::
 ## 2. Random Forest Imputation (MissForest)
 
 ### Example
-```
+```python
 # Let X be an array containing missing values
 from missingpy import MissForest
 imputer = MissForest()
@@ -222,6 +222,9 @@ and columns. Following [1], the stopping criterion is considered to have
 been met when difference between `X_new` and `X_old` increases for the first
 time for both types of variables (if available).
 
+**Note: The categorical variables need to be one-hot-encoded (also known as 
+dummy encoded) and they need to be explicitly identified during the 
+imputer's fit() method call. See the API section for more information.**
 
     >>> from missingpy import MissForest
     >>> nan = float("NaN")
