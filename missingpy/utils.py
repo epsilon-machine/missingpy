@@ -4,6 +4,8 @@
 
 import numpy as np
 
+def is_nan(n):
+    return n == "NaN" or isinstance(n, float) and np.isnan(n)
 
 def masked_euclidean_distances(X, Y=None, squared=False,
                                missing_values="NaN", copy=True):
@@ -92,7 +94,7 @@ def masked_euclidean_distances(X, Y=None, squared=False,
         raise ValueError("One or more rows only contain missing values.")
 
     # else:
-    if missing_values not in ["NaN", np.nan] and (
+    if not is_nan(missing_values) and (
             np.any(np.isnan(X)) or (Y is not X and np.any(np.isnan(Y)))):
         raise ValueError(
             "NaN values present but missing_value = {0}".format(
