@@ -17,6 +17,8 @@ from .pairwise_external import pairwise_distances
 from .pairwise_external import _get_mask
 from .pairwise_external import _MASKED_METRICS
 
+from .utils import is_nan
+
 __all__ = [
     'KNNImputer',
 ]
@@ -193,8 +195,7 @@ class KNNImputer(BaseEstimator, TransformerMixin):
         """
 
         # Check data integrity and calling arguments
-        force_all_finite = False if self.missing_values in ["NaN",
-                                                            np.nan] else True
+        force_all_finite = not is_nan(self.missing_values)
         if not force_all_finite:
             if self.metric not in _MASKED_METRICS and not callable(
                     self.metric):
@@ -250,8 +251,7 @@ class KNNImputer(BaseEstimator, TransformerMixin):
         """
 
         check_is_fitted(self, ["fitted_X_", "statistics_"])
-        force_all_finite = False if self.missing_values in ["NaN",
-                                                            np.nan] else True
+        force_all_finite = not is_nan(self.missing_values)
         X = check_array(X, accept_sparse=False, dtype=FLOAT_DTYPES,
                         force_all_finite=force_all_finite, copy=self.copy)
 

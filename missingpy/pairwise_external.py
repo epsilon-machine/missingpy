@@ -48,7 +48,7 @@ from sklearn.metrics.pairwise import PAIRWISE_DISTANCE_FUNCTIONS
 from sklearn.metrics.pairwise import _parallel_pairwise
 from sklearn.utils import check_array
 
-from .utils import masked_euclidean_distances
+from .utils import is_nan, masked_euclidean_distances
 
 _MASKED_METRICS = ['masked_euclidean']
 _VALID_METRICS += ['masked_euclidean']
@@ -56,7 +56,7 @@ _VALID_METRICS += ['masked_euclidean']
 
 def _get_mask(X, value_to_mask):
     """Compute the boolean mask X == missing_values."""
-    if value_to_mask == "NaN" or np.isnan(value_to_mask):
+    if is_nan(value_to_mask):
         return np.isnan(X)
     else:
         return X == value_to_mask
