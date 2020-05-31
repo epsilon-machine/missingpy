@@ -120,7 +120,6 @@ def check_pairwise_arrays(X, Y, precomputed=False, dtype=None,
     """
     X, Y, dtype_float = _return_float_dtype(X, Y)
 
-    warn_on_dtype = dtype is not None
     estimator = 'check_pairwise_arrays'
     if dtype is None:
         dtype = dtype_float
@@ -128,14 +127,14 @@ def check_pairwise_arrays(X, Y, precomputed=False, dtype=None,
     if Y is X or Y is None:
         X = Y = check_array(X, accept_sparse=accept_sparse, dtype=dtype,
                             copy=copy, force_all_finite=force_all_finite,
-                            warn_on_dtype=warn_on_dtype, estimator=estimator)
+                            estimator=estimator)
     else:
         X = check_array(X, accept_sparse=accept_sparse, dtype=dtype,
                         copy=copy, force_all_finite=force_all_finite,
-                        warn_on_dtype=warn_on_dtype, estimator=estimator)
+                        estimator=estimator)
         Y = check_array(Y, accept_sparse=accept_sparse, dtype=dtype,
                         copy=copy, force_all_finite=force_all_finite,
-                        warn_on_dtype=warn_on_dtype, estimator=estimator)
+                        estimator=estimator)
 
     if precomputed:
         if X.shape[1] != Y.shape[0]:
