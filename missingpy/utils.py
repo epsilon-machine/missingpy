@@ -121,4 +121,9 @@ def masked_euclidean_distances(X, Y=None, squared=False,
         # This may not be the case due to floating point rounding errors.
         distances.flat[::distances.shape[0] + 1] = 0.0
 
-    return distances if squared else np.sqrt(distances, out=distances)
+    np.clip(distances, 0.0, None, out=distances)
+
+    if not squared:
+        np.sqrt(distances, out=distances)
+
+    return distances

@@ -408,7 +408,6 @@ class MissForest(BaseEstimator, TransformerMixin):
             if self.num_vars_ is not None:
                 gamma_new = np.sum((Ximp[:, self.num_vars_] - Ximp_old[:, self.num_vars_]) ** 2) / np.sum((Ximp[:, self.num_vars_]) ** 2)
 
-            print("Iteration:", self.iter_count_)
             self.iter_count_ += 1
 
         return Ximp_old
