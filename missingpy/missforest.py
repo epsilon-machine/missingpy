@@ -82,7 +82,7 @@ class MissForest(BaseEstimator, TransformerMixin):
         If True, a copy of X will be created. If False, imputation will
         be done in-place whenever possible.
 
-    criterion : tuple, optional (default = ('mse', 'gini'))
+    criterion : tuple, optional (default = ('squared_error', 'gini'))
         The function to measure the quality of a split.The first element of
         the tuple is for the Random Forest Regressor (for imputing numerical
         variables) while the second element is for the Random Forest
@@ -235,7 +235,7 @@ class MissForest(BaseEstimator, TransformerMixin):
     """
 
     def __init__(self, max_iter=10, decreasing=False, missing_values=np.nan,
-                 copy=True, n_estimators=100, criterion=('mse', 'gini'),
+                 copy=True, n_estimators=100, criterion=('squared_error', 'gini'),
                  max_depth=None, min_samples_split=2, min_samples_leaf=1,
                  min_weight_fraction_leaf=0.0, max_features='auto',
                  max_leaf_nodes=None, min_impurity_decrease=0.0,
