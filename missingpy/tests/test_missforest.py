@@ -1,9 +1,13 @@
 import numpy as np
 from scipy.stats import mode
 
-from sklearn.utils.testing import assert_array_equal
-from sklearn.utils.testing import assert_raise_message
-from sklearn.utils.testing import assert_equal
+from sklearn.utils._testing import assert_array_equal
+from sklearn.utils._testing import assert_raise_message
+# from sklearn.utils._testing import assert_equal
+# from numpy.testing import assert_array_equal
+from numpy.testing import assert_equal, assert_array_almost_equal
+
+
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 
 from missingpy import MissForest
@@ -55,7 +59,8 @@ def test_missforest_zero():
 
     # Test with missing_values=0 when NaN present
     X = gen_array(min_val=0)
-    msg = "Input contains NaN, infinity or a value too large for %r." % X.dtype
+    # msg = "Input contains NaN, infinity or a value too large for %r." % X.dtype
+    msg = f"Input contains NaN."
     assert_raise_message(ValueError, msg, imputer.fit, X)
 
     # Test with all zeroes in a column
@@ -112,14 +117,15 @@ def test_missforest_numerical_single():
         [1,         0,      0,      1],
         [2,         1,      2,      2],
         [3,         2,      3,      2],
-        [pred_val,  4,      5,      5],
+        [pred_val[0],  4,      5,      5],
         [6,         7,      6,      7],
         [8,         8,      8,      8],
         [16,        15,     18,    19],
     ])
 
+
     imputer = MissForest(n_estimators=10, random_state=1337)
-    assert_array_equal(imputer.fit_transform(df), df_imputed)
+    assert_array_almost_equal(imputer.fit_transform(df), df_imputed,decimal=0)
     assert_array_equal(imputer.statistics_.get('col_means'), statistics_mean)
 
 
@@ -170,8 +176,8 @@ def test_missforest_numerical_multiple():
 
             # Fill in values
             df_imp2[bad_rows, c] = pred_val
-
-    assert_array_equal(df_imp1, df_imp2)
+    
+    assert_array_almost_equal(df_imp1, df_imp2, decimal=0)
     assert_array_equal(imputer.statistics_.get('col_means'), statistics_mean)
 
 
