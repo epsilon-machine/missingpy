@@ -128,14 +128,17 @@ def check_pairwise_arrays(X, Y, precomputed=False, dtype=None,
     if Y is X or Y is None:
         X = Y = check_array(X, accept_sparse=accept_sparse, dtype=dtype,
                             copy=copy, force_all_finite=force_all_finite,
-                            warn_on_dtype=warn_on_dtype, estimator=estimator)
+                            # warn_on_dtype=warn_on_dtype, 
+                            estimator=estimator)
     else:
         X = check_array(X, accept_sparse=accept_sparse, dtype=dtype,
                         copy=copy, force_all_finite=force_all_finite,
-                        warn_on_dtype=warn_on_dtype, estimator=estimator)
+                        # warn_on_dtype=warn_on_dtype, 
+                        estimator=estimator)
         Y = check_array(Y, accept_sparse=accept_sparse, dtype=dtype,
                         copy=copy, force_all_finite=force_all_finite,
-                        warn_on_dtype=warn_on_dtype, estimator=estimator)
+                        # warn_on_dtype=warn_on_dtype, 
+                        estimator=estimator)
 
     if precomputed:
         if X.shape[1] != Y.shape[0]:

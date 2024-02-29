@@ -1,9 +1,10 @@
 import numpy as np
 
-from sklearn.utils.testing import assert_array_equal
-from sklearn.utils.testing import assert_array_almost_equal
-from sklearn.utils.testing import assert_raise_message
-from sklearn.utils.testing import assert_equal
+from sklearn.utils._testing import assert_array_equal
+from sklearn.utils._testing import assert_array_almost_equal
+from sklearn.utils._testing import assert_raise_message
+# from sklearn.utils._testing import assert_equal
+from numpy.testing import assert_equal
 
 from missingpy import KNNImputer
 from missingpy.pairwise_external import masked_euclidean_distances
@@ -40,7 +41,7 @@ def test_knn_imputation_zero():
         [np.nan, 2, 0, 0, 0],
         [np.nan, 6, 0, 5, 13],
     ])
-    msg = "Input contains NaN, infinity or a value too large for %r." % X.dtype
+    msg = f"Input contains NaN."
     assert_raise_message(ValueError, msg, imputer.fit, X)
 
     # Test with % zeros in column > col_max_missing
