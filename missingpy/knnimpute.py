@@ -10,9 +10,8 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.validation import FLOAT_DTYPES
-from sklearn.neighbors.base import _check_weights
-from sklearn.neighbors.base import _get_weights
-
+from sklearn.neighbors._base import _get_weights
+# from sklearn.neighbors._base import _check_weights
 from .pairwise_external import pairwise_distances
 from .pairwise_external import _get_mask
 from .pairwise_external import _MASKED_METRICS
@@ -21,6 +20,16 @@ __all__ = [
     'KNNImputer',
 ]
 
+
+def _check_weights(weights):
+    """Check to make sure weights are valid"""
+    if weights in (None, 'uniform', 'distance'):
+        return weights
+    elif callable(weights):
+        return weights
+    else:
+        raise ValueError("weights not recognized: should be 'uniform', "
+                         "'distance', or a callable function")
 
 class KNNImputer(BaseEstimator, TransformerMixin):
     """Imputation for completing missing values using k-Nearest Neighbors.
@@ -284,7 +293,7 @@ class KNNImputer(BaseEstimator, TransformerMixin):
             X = X[~bad_rows, :]
             mask = mask[~bad_rows]
             row_total_missing = mask.sum(axis=1)
-        row_has_missing = row_total_missing.astype(np.bool)
+        row_has_missing = row_total_missing.astype(bool)
 
         if np.any(row_has_missing):
 

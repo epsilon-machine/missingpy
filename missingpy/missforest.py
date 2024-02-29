@@ -234,13 +234,27 @@ class MissForest(BaseEstimator, TransformerMixin):
            [8.  , 8. , 7. ]])
     """
 
-    def __init__(self, max_iter=10, decreasing=False, missing_values=np.nan,
-                 copy=True, n_estimators=100, criterion=('mse', 'gini'),
-                 max_depth=None, min_samples_split=2, min_samples_leaf=1,
-                 min_weight_fraction_leaf=0.0, max_features='auto',
-                 max_leaf_nodes=None, min_impurity_decrease=0.0,
-                 bootstrap=True, oob_score=False, n_jobs=-1, random_state=None,
-                 verbose=0, warm_start=False, class_weight=None):
+    def __init__(self, 
+                 max_iter=10, 
+                 decreasing=False, 
+                 missing_values=np.nan,
+                 copy=True, 
+                 n_estimators=100, 
+                 criterion= ['squared_error', 'gini'], #['squared_error', 'absolute_error', 'poisson', 'friedman_mse', 'gini', 'entropy', 'log_loss'], #{'squared_error', 'absolute_error', 'poisson', 'friedman_mse'}
+                 max_depth=None, 
+                 min_samples_split=2, 
+                 min_samples_leaf=1,
+                 min_weight_fraction_leaf=0.0, 
+                 max_features='sqrt', # {"sqrt", "log2", None}, int or float,
+                 max_leaf_nodes=None, 
+                 min_impurity_decrease=0.0,
+                 bootstrap=True, 
+                 oob_score=False, 
+                 n_jobs=-1, 
+                 random_state=None,
+                 verbose=0, 
+                 warm_start=False, 
+                 class_weight=None):
 
         self.max_iter = max_iter
         self.decreasing = decreasing
@@ -288,6 +302,7 @@ class MissForest(BaseEstimator, TransformerMixin):
             reg_criterion = self.criterion if type(self.criterion) == str \
                 else self.criterion[0]
 
+
             # Instantiate regression model
             rf_regressor = RandomForestRegressor(
                 n_estimators=self.n_estimators,
@@ -323,7 +338,7 @@ class MissForest(BaseEstimator, TransformerMixin):
 
             # Classfication criterion
             clf_criterion = self.criterion if type(self.criterion) == str \
-                else self.criterion[1]
+                else self.criterion[-1]
 
             # Instantiate classification model
             rf_classifier = RandomForestClassifier(
@@ -343,6 +358,7 @@ class MissForest(BaseEstimator, TransformerMixin):
                 verbose=self.verbose,
                 warm_start=self.warm_start,
                 class_weight=self.class_weight)
+
 
         # 2. misscount_idx: sorted indices of cols in X based on missing count
         misscount_idx = np.argsort(col_missing_count)
